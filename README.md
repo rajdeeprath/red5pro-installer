@@ -290,8 +290,10 @@ DEFAULT_RPRO_FOLDER_NAME=red5
 RED5_OPEN_SOURCE=1
 
 ```
-**NOTE**
+**IMPORTANT NOTE**
 
-> Options such as `SSL Installer`,  `License Management` etc have been disabled for Open Source mode. these optiosn will appear as `striked-through` in the menu option.
+* Options such as `SSL Installer`,  `License Management` etc have been disabled for Open Source mode. these optiosn will appear as `striked-through` in the menu option.
 
-> Only `zip` archive format is supported (Which is available for releases) when installing from `GITHUB` or a different uploaded location. To install a non release candidate, you need to extract the tarball, zip the content manually and upload it to `dropbox` or similar to get a installable URL.
+* Only `zip` archive format is supported (Which is available for releases) when installing from `GITHUB` or a different uploaded location. To install a non release candidate, you need to extract the tarball, zip the content manually and upload it to `dropbox` or similar to get a installable URL.
+
+* Do not attempt to install both Red5 open source and Red5 Pro together. Always uninstall one before attempting to install the other.
