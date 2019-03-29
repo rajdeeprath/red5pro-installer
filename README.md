@@ -290,3 +290,4 @@ DEFAULT_RPRO_FOLDER_NAME=red5
 RED5_OPEN_SOURCE=1
 
 ```
+> Options such as `SSL Installer`,  `License Management` etc have been disabled for Open Source mode. these optiosn will appear as `striked-through` in the menu option.
