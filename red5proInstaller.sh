@@ -2842,15 +2842,35 @@ simple_menu()
 	else
 		echo "1. --- INSTALL LATEST $RED5_VERSION_NAME		"
 	fi	
+
+	if [ "$RED5_OPEN_SOURCE" -eq "1" ]; then
+		echo "2. --- INSTALL $RED5_VERSION_NAME FROM URL (UPLOADED ARCHIVE / GITHUB)	"
+	else
+		echo "2. --- INSTALL $RED5_VERSION_NAME FROM URL (UPLOADED ARCHIVE)	"
+	fi
 	
-	echo "2. --- INSTALL $RED5_VERSION_NAME FROM URL (UPLOADED ARCHIVE)	"
+
 
 	if [[ $rpro_exists -eq 1 ]]; then
 
 		printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 		echo "3. --- REMOVE $RED5_VERSION_NAME INSTALLATION	"
-		echo "4. --- ADD / UPDATE $RED5_VERSION_NAME LICENSE	"
-		echo "5. --- SSL CERT INSTALLER (Letsencrypt) 		"
+
+		if [ "$RED5_OPEN_SOURCE" -eq "1" ]; then
+			echo -e "4. --- \e[9mADD / UPDATE $RED5_VERSION_NAME LICENSE\e[0m	"
+		else
+			echo "4. --- ADD / UPDATE $RED5_VERSION_NAME LICENSE	"
+		fi
+
+
+
+		if [ "$RED5_OPEN_SOURCE" -eq "1" ]; then
+			echo -e "5. --- \e[9mSSL CERT INSTALLER (Letsencrypt)\e[0m 		"
+		else
+			echo "5. --- SSL CERT INSTALLER (Letsencrypt) 		"
+		fi	
+
+		
 		printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -	
 		echo "6. --- START $RED5_VERSION_NAME			"
 		echo "7. --- STOP $RED5_VERSION_NAME			"		
@@ -2910,15 +2930,23 @@ simple_menu_read_options(){
 			fi
 			;;
 		4) 
-			if [[ $rpro_exists -eq 1 ]]; then
-				cls && show_licence_menu
+			if [ ! "$RED5_OPEN_SOURCE" -eq "1" ]; then
+				if [[ $rpro_exists -eq 1 ]]; then
+					cls && show_licence_menu
+				else
+					echo -e "\e[41m Error: Invalid choice\e[m" && sleep 2 && show_simple_menu
+				fi
 			else
 				echo -e "\e[41m Error: Invalid choice\e[m" && sleep 2 && show_simple_menu
 			fi
 			;;
 		5) 
-			if [[ $rpro_exists -eq 1 ]]; then
-				cls && rpro_ssl_installer
+			if [ ! "$RED5_OPEN_SOURCE" -eq "1" ]; then
+				if [[ $rpro_exists -eq 1 ]]; then
+					cls && rpro_ssl_installer
+				else
+					echo -e "\e[41m Error: Invalid choice\e[m" && sleep 2 && show_simple_menu
+				fi
 			else
 				echo -e "\e[41m Error: Invalid choice\e[m" && sleep 2 && show_simple_menu
 			fi
