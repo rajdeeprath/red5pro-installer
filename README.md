@@ -101,6 +101,10 @@ RED5PRO_SSL_DEFAULT_WS_PORT=5080
 RED5PRO_SSL_DEFAULT_WSS_PORT=443
 RED5PRO_SSL_DEPRECATED_WS_PORT=8081
 RED5PRO_SSL_DEPRECATED_WSS_PORT=8083
+
+# PRO OR OS 
+# ---------------------------------------
+RED5_OPEN_SOURCE=1
 ```
 
 ##### Configuration Options:
@@ -126,6 +130,7 @@ RED5PRO_SSL_DEPRECATED_WSS_PORT=8083
 * `RED5PRO_SSL_DEFAULT_WSS_PORT`: Red5 Pro default secure websocket port. This is used by the SSL installer to configure the secure websocket port value (`443` is the default). This option should not be edited.
 * `RED5PRO_SSL_DEPRECATED_WS_PORT`: Red5 Pro deprecated unsecure websocket port. This is used by the SSL installer to configure the unsecure websocket port value for older builds (`8081` is the default). This option should not be edited.
 * `RED5PRO_SSL_DEPRECATED_WSS_PORT`: Red5 Pro deprecated secure websocket port. This is used by the SSL installer to configure the secure websocket port value for older builds (`8083` is the default). This option should not be edited.
+* `RED5_OPEN_SOURCE`: Selects installer mode between Red5 Pro `(0)` & Red5 Open Source `(1)`. Default value is `1`
 
 ## PROGRAM OPTIONS
 
@@ -261,3 +266,34 @@ Check the default install location for an existing Red5 Pro Server installation 
 #### 2. WHICH JAVA AM I USING ?
 
 Selecting this option lets you see the current java version on your system. If java is not found, the program will print a message to notify the same.
+
+
+## RED5 OPEN SOURCE SUPPORT
+
+Installer has been updated to support Red5 open source alongside pro, bringing smooth installation & configuration mechanism to Red5 open source. You can now experience the same operating system service installation as offered by Pro for tighter integration with the system, smart dependency instalaltion and more... 
+
+To enable Open source installation mode edit the following properties selectively in `conf.ini`:
+
+```ini
+
+# Backup Folder => [ located in home directory ]
+# ----------------------------------------------
+DEFAULT_BACKUP_FOLDER=red5_backups
+
+# Red5pro install location
+# ----------------------------------------
+DEFAULT_RPRO_INSTALL_LOCATION=/usr/local
+DEFAULT_RPRO_FOLDER_NAME=red5
+
+# PRO OR OS 
+# ---------------------------------------
+RED5_OPEN_SOURCE=1
+
+```
+**IMPORTANT NOTE**
+
+* Options such as `SSL Installer`,  `License Management` etc have been disabled for Open Source mode. these optiosn will appear as `striked-through` in the menu option.
+
+* Only `zip` archive format is supported (Which is available for releases) when installing from `GITHUB` or a different uploaded location. To install a non release candidate, you need to extract the tarball, zip the content manually and upload it to `dropbox` or similar to get a installable URL.
+
+* Do not attempt to install both Red5 open source and Red5 Pro together. Always uninstall one before attempting to install the other.
